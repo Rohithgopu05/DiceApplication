@@ -1,12 +1,34 @@
+
+.RulesMain{
+   height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  top: 10px;
+}
 .rulesdisplay {
   height: 400px;
-  width: 400px;
-  background-color: #d30909;
+  width: 600px;
+  background-color: #b8b2b2c2;
   transform: translateX(10%);
-  transform: translateY(-120%);
+  transform: translateY(-10%);
   position: absolute;
   top: 100px;
-  color: white;
+  color:black;
   text-align: center;
   font-size: 30px;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 10px 10px rgba(255, 255, 255, 0.071);
+}
+.rulesdisplay h1{
+  font-size: 40px;
+  margin: 10px;
+}
+.rulesdisplay button{
+  margin-top: 100px;
 }

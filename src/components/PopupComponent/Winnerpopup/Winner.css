@@ -1,15 +1,34 @@
+.WinMain {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  top: 10px;
+}
 .winpop {
-  height: 300px;
+  margin-top: 300px;
+  height: 400px;
   width: 400px;
   background: linear-gradient(
     to Right,
-    rgb(255, 230, 8),
-    rgb(68, 186, 9),
+    rgb(179, 1, 255),
+    rgb(22, 233, 3),
     rgb(255, 168, 7)
   );
   transform: translateX(40px);
   transform: translateY(-200px);
   position: absolute;
   text-align: center;
+  border: none;
+  border-radius: 50px;
+  z-index: 3;
+}
+.winpop h1 {
   font-size: 25px;
+  font-weight: 50px;
+  margin: 40px;
 }
