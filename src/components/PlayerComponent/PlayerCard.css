@@ -1,0 +1,46 @@
+.Playercard {
+  font-weight: 100;
+  font-weight: 100;
+}
+.Playerone {
+  height: 500px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.active {
+  background: rgba(255, 253, 253, 0.308);
+}
+.inactive {
+  background: rgba(44, 43, 43, 0.379);
+}
+.Playertwo {
+  height: 500px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.Playercard h1 {
+  font-weight: 100;
+  color: antiquewhite;
+  margin-top: 60px;
+  font-size: 30px;
+}
+.Playercard h2 {
+  color: antiquewhite;
+}
+.Playercard p {
+  font-weight: 100;
+  color: antiquewhite;
+  margin-top: 10px;
+  font-size: 30px;
+}
+.currentbox {
+  margin-top: 150px;
+  width: 180px;
+  background-color: rgb(11, 45, 234);
+  border: none;
+  border-radius: 5px;
+}

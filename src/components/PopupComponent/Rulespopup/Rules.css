@@ -1,0 +1,12 @@
+.rulesdisplay {
+  height: 400px;
+  width: 400px;
+  background-color: #d30909;
+  transform: translateX(10%);
+  transform: translateY(-120%);
+  position: absolute;
+  top: 100px;
+  color: white;
+  text-align: center;
+  font-size: 30px;
+}

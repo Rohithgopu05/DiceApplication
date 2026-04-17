@@ -1,0 +1,50 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+body {
+  background-color: #ffffff;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 0, 0);
+}
+
+.maincontainer {
+  width: 800px;
+  display: flex;
+  flex-direction: row;
+}
+.Playerone {
+  height: 500px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.Playertwo {
+  height: 500px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.active {
+  background: rgb(81, 207, 106);
+}
+
+.inactive {
+  background: rgb(198, 98, 98);
+}

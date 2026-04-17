@@ -1,0 +1,15 @@
+.winpop {
+  height: 300px;
+  width: 400px;
+  background: linear-gradient(
+    to Right,
+    rgb(255, 230, 8),
+    rgb(68, 186, 9),
+    rgb(255, 168, 7)
+  );
+  transform: translateX(40px);
+  transform: translateY(-200px);
+  position: absolute;
+  text-align: center;
+  font-size: 25px;
+}
