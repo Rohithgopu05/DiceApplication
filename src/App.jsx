@@ -38,6 +38,10 @@ const App = () => {
   const [showeditname, seteditname] = useState(false);
   const [showRules, setShowRules] = useState(false);
   const [showWinScore, setWinScore] = useState(false);
+  const [Winnername, setWinnerName] = useState("");
+  const [winnerscore, setWinningScore] = useState(0);
+  const [PlayerName1, setPlayerName1] = useState("Player One");
+  const [PlayerName2, setPlayerName2] = useState("Player Two");
 
   const randomNum = Math.ceil(Math.random() * 6);
   const totalPlayer1Score = Player1Score + P1CurrentScore;
@@ -51,6 +55,7 @@ const App = () => {
     setP2CurrentScore(0);
     setPlayer1Score(0);
     setPlayer2Score(0);
+    setRandomGenNum(1);
   };
 
   const rolldice = () => {
@@ -66,7 +71,7 @@ const App = () => {
       if (totalPlayer1Score >= Input) {
         setPlayer1Score(totalPlayer1Score);
         setP1CurrentScore(0);
-        winnerfunction();
+        winnerfunction("Player One", totalPlayer1Score);
       } else {
         setPlayer1Score(totalPlayer1Score);
         setP1CurrentScore(0);
@@ -76,7 +81,7 @@ const App = () => {
       if (totalPlayer2Score >= Input) {
         setPlayer2Score(totalPlayer2Score);
         setP2CurrentScore(0);
-        winnerfunction();
+        winnerfunction("Player Two", totalPlayer2Score);
       } else {
         setPlayer2Score(totalPlayer2Score);
         setP2CurrentScore(0);
@@ -99,8 +104,16 @@ const App = () => {
   const editplayername = () => {
     seteditname(!showeditname);
   };
-  const winnerfunction = () => {
+  const winnerfunction = (name, score) => {
+    setWinnerName(name);
+    setWinningScore(score);
     setWinScore(!showWinScore);
+  };
+  const InputName1 = (e) => {
+    setPlayerName1(e.target.value);
+  };
+  const InputName2 = (e) => {
+    setPlayerName2(e.target.value);
   };
 
   return (
@@ -122,7 +135,7 @@ const App = () => {
             </div>
             <PlayerLayout
               isActive={ActivePlayer}
-              name="Player One"
+              name={PlayerName1}
               PlayerScore={Player1Score}
               current="Current Score"
               currentscore={P1CurrentScore}
@@ -143,7 +156,7 @@ const App = () => {
           </div>
           <div className={`Playertwo ${!ActivePlayer ? "active" : "inactive"}`}>
             <PlayerLayout
-              name="Player Two"
+              name={PlayerName2}
               PlayerScore={Player2Score}
               current="Current Score"
               currentscore={P2CurrentScore}
@@ -165,8 +178,20 @@ const App = () => {
             name="Edit"
             Buttonfunction={editplayername}
           />
-          {showeditname && <EditModal closeFunc={editplayername} />}
-          {showWinScore && <Winnerpopup Winner={winnerfunction} />}
+          {showeditname && (
+            <EditModal
+              closeFunc={editplayername}
+              value={InputName1}
+              value2={InputName2}
+            />
+          )}
+          {showWinScore && (
+            <Winnerpopup
+              Winner={winnerfunction}
+              name={Winnername}
+              score={winnerscore}
+            />
+          )}
         </div>
       </div>
     </>

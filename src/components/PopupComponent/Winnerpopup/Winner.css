@@ -11,7 +11,7 @@
 }
 .winpop {
   margin-top: 300px;
-  height: 400px;
+  height: 230px;
   width: 400px;
   background: linear-gradient(
     to Right,
@@ -26,9 +26,14 @@
   border: none;
   border-radius: 50px;
   z-index: 3;
+  box-shadow: 3px 3px 3px rgb(185, 189, 187);
 }
 .winpop h1 {
   font-size: 25px;
   font-weight: 50px;
-  margin: 40px;
+  margin: 20px;
+  color: rgb(21, 18, 15);
+}
+.winpop button{
+  box-shadow: 2px 2px 2px rgb(90, 25, 25);
 }

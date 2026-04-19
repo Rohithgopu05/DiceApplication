@@ -10,7 +10,7 @@
   text-align: center;
 }
 .active {
-  background: rgba(255, 253, 253, 0.308);
+  background: rgba(255, 253, 253, 0.578);
 }
 .inactive {
   background: rgba(44, 43, 43, 0.379);
@@ -24,16 +24,16 @@
 }
 .Playercard h1 {
   font-weight: 100;
-  color: antiquewhite;
+  color: rgb(0, 0, 0);
   margin-top: 60px;
   font-size: 30px;
 }
 .Playercard h2 {
-  color: antiquewhite;
+  color: rgb(0, 0, 0);
 }
 .Playercard p {
   font-weight: 100;
-  color: antiquewhite;
+  color: rgb(0, 0, 0);
   margin-top: 10px;
   font-size: 30px;
 }
@@ -43,4 +43,6 @@
   background-color: rgb(11, 45, 234);
   border: none;
   border-radius: 5px;
+  box-shadow: 8px 4px 4px 8px rgb(22, 20, 20);
+
 }
