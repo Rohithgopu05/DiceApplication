@@ -5,12 +5,13 @@ export const RulesModal = ({ Okayfunc }) => {
       <div className="RulesMain">
         <div className="rulesdisplay">
           <h1>RULES OF THE GAME!!!!!!</h1>
-          <ol >
-            <li>dice should be rolled once</li>
-            <li>dice should be rolled twice</li>
-            <li>dice should be rolled once</li>
-            <li>dice should be rolled once</li>
-            <li>dice should be rolled once</li>
+          <ol>
+            <li>Enter the player names before the game start.</li>
+            <li>One player has only one chance to roll the dice.</li>
+            <li>
+              Active player gets the second chance to roll the dice,if the both
+              dice score is equal to six.
+            </li>
           </ol>
           <button type="submit" onClick={Okayfunc}>
             Okay

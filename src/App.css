@@ -19,6 +19,9 @@ body {
   align-items: center;
   justify-content: center;
   background: linear-gradient(to right, rgb(58, 56, 56), rgb(170, 166, 166));
+  /* background: url("https://th.bing.com//id/OIF.h9ZwahLiaCS2WfzVEYEZVw?w=318&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3"); */
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .maincontainer {

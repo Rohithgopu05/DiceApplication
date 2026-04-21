@@ -27,6 +27,7 @@ import { DiceImage } from "./components/DiceImageCompoment/Dice";
 import { EditModal } from "./components/PopupComponent/Editpopup/EditName";
 import { RulesModal } from "./components/PopupComponent/Rulespopup/Rules";
 import { Winnerpopup } from "./components/PopupComponent/Winnerpopup/Winner";
+import { GameFlow } from "./components/PopupComponent/GameFlowPopup/Game";
 const App = () => {
   const [randomGeneNum, setRandomGenNum] = useState(1);
   const [P1CurrentScore, setP1CurrentScore] = useState(0);
@@ -42,6 +43,7 @@ const App = () => {
   const [winnerscore, setWinningScore] = useState(0);
   const [PlayerName1, setPlayerName1] = useState("Player One");
   const [PlayerName2, setPlayerName2] = useState("Player Two");
+  const [Start, setStart] = useState(false);
 
   const randomNum = Math.ceil(Math.random() * 6);
   const totalPlayer1Score = Player1Score + P1CurrentScore;
@@ -56,6 +58,11 @@ const App = () => {
     setPlayer1Score(0);
     setPlayer2Score(0);
     setRandomGenNum(1);
+  };
+
+  const startfunc = () => {
+    setStart(!Start);
+    seteditname(!showeditname);
   };
 
   const rolldice = () => {
@@ -123,7 +130,12 @@ const App = () => {
           <div className={`Playerone ${ActivePlayer ? "active" : "inactive"}`}>
             <div className="TopButtons">
               <div>
-                <Button icon={<FaPlay />} name="Start" />
+                <Button
+                  icon={<FaPlay />}
+                  name="Start"
+                  Buttonfunction={startfunc}
+                />
+                {Start && <GameFlow okayfunc={startfunc} />}
               </div>
               <div>
                 <Button
