@@ -1,5 +1,5 @@
 .gamemain {
-    height: 100vh;
+  height: 100vh;
   width: 100vw;
   position: fixed;
   z-index: 3;
@@ -9,11 +9,10 @@
   background-color: rgba(0, 0, 0, 0.7);
   top: 10px;
   transform: translateX(-45%);
-  
 }
 .gameflow {
-    z-index: 3;
-    position: absolute;
+  z-index: 3;
+  position: absolute;
   height: 400px;
   width: 700px;
   background-color: rgb(48, 41, 41);
@@ -29,14 +28,21 @@
   justify-content: center;
   align-items: center;
 }
-.gameflow p{
-    font-size: 20px;
-    color: white;
-    text-align: justify;
-    margin-left: 20px;
-    margin-right: 20px;
+.gameflow p {
+  font-size: 20px;
+  color: white;
+  text-align: justify;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 .gameflow h1 {
   font-size: 45px;
-  color: antiquewhite;
+  border: 1px solid rgb(255, 0, 0);
+  color: rgb(255, 0, 0);
+  margin-bottom: 20px;
+  padding: 10px;
+
+}
+.gameflow button{
+  margin-top: 20px;
 }

@@ -4,7 +4,7 @@ export const GameFlow = ({ okayfunc }) => {
     <>
       <div className="gamemain">
         <div className="gameflow">
-          <h1>Game Flow</h1>
+          <h1>Game Flow!!!!</h1>
           <p>
             When the player clicks Start, the game begins with Player One. By
             clicking Roll Dice, a random number is added to the current score.
@@ -16,7 +16,7 @@ export const GameFlow = ({ okayfunc }) => {
             displayed announcing the winner and ending the game.
           </p>
           <button type="submit" onClick={okayfunc}>
-            Okay
+            Continue!!
           </button>
         </div>
       </div>

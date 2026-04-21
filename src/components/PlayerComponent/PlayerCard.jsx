@@ -1,5 +1,11 @@
 import "./PlayerCard.css";
-export const PlayerLayout = ({ name, PlayerScore, current, currentscore,isActive }) => {
+export const PlayerLayout = ({
+  name,
+  PlayerScore,
+  current,
+  currentscore,
+  isActive,
+}) => {
   return (
     <>
       <div className="Playercard">

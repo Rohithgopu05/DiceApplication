@@ -44,6 +44,7 @@ const App = () => {
   const [PlayerName1, setPlayerName1] = useState("Player One");
   const [PlayerName2, setPlayerName2] = useState("Player Two");
   const [Start, setStart] = useState(false);
+  const [HardMode, setHardMode] = useState(false);
 
   const randomNum = Math.ceil(Math.random() * 6);
   const totalPlayer1Score = Player1Score + P1CurrentScore;
@@ -57,7 +58,6 @@ const App = () => {
     setP2CurrentScore(0);
     setPlayer1Score(0);
     setPlayer2Score(0);
-    setRandomGenNum(1);
   };
 
   const startfunc = () => {
@@ -67,10 +67,19 @@ const App = () => {
 
   const rolldice = () => {
     setRandomGenNum(randomNum);
-    if (ActivePlayer === 1) {
-      setP1CurrentScore(totalp1CurrentScore);
+    if (randomNum !== 1) {
+      if (ActivePlayer === 1) {
+        setP1CurrentScore(totalp1CurrentScore);
+      } else {
+        setP2CurrentScore(totalp2CurrentScore);
+      }
     } else {
-      setP2CurrentScore(totalp2CurrentScore);
+      if (ActivePlayer === 1) {
+        setP1CurrentScore(0);
+      } else {
+        setP2CurrentScore(0);
+      }
+      setActivePlayer(1-ActivePlayer);
     }
   };
   const holddice = () => {
@@ -100,7 +109,7 @@ const App = () => {
     console.log("Normal mode Game");
   };
   const Hardclickmode = () => {
-    console.log("Hard mode Game");
+    setHardMode(!HardMode);
   };
   const InputScore = (e) => {
     setInput(e.target.value);
