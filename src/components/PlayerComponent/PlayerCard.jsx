@@ -9,8 +9,10 @@ export const PlayerLayout = ({
   return (
     <>
       <div className="Playercard">
-        <h1>{name}</h1>
-        <p>{PlayerScore}</p>
+        <div className="playertitle">
+          <h1>{name}</h1>
+          <p>{PlayerScore}</p>
+        </div>
         <div className="currentbox">
           <h2>{current}</h2>
           <p>{currentscore}</p>

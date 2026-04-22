@@ -25,19 +25,29 @@ import { Button } from "./components/ButtonComponent/Button";
 import { InputField } from "./components/InputFieldComponent/Input";
 import { DiceImage } from "./components/DiceImageCompoment/Dice";
 import { EditModal } from "./components/PopupComponent/Editpopup/EditName";
-import { RulesModal } from "./components/PopupComponent/Rulespopup/Rules";
+import {
+  HardRules,
+  RulesModal,
+} from "./components/PopupComponent/Rulespopup/Rules";
 import { Winnerpopup } from "./components/PopupComponent/Winnerpopup/Winner";
 import { GameFlow } from "./components/PopupComponent/GameFlowPopup/Game";
 const App = () => {
+  const [warning, setwarning] = useState("");
+  const [name1input, setname1input] = useState("player1");
+  const [name2input, setname2input] = useState("player2");
   const [randomGeneNum, setRandomGenNum] = useState(1);
+  const [randomGeneNum2, setRandomGenNum2] = useState(1);
+
   const [P1CurrentScore, setP1CurrentScore] = useState(0);
   const [P2CurrentScore, setP2CurrentScore] = useState(0);
   const [ActivePlayer, setActivePlayer] = useState(1);
   const [Player1Score, setPlayer1Score] = useState(0);
   const [Player2Score, setPlayer2Score] = useState(0);
-  const [Input, setInput] = useState(10);
+  const [Input, setInput] = useState(50);
+  const [HardmodeInput, setHardmodeInput] = useState(100);
   const [showeditname, seteditname] = useState(false);
   const [showRules, setShowRules] = useState(false);
+  const [showHardRules, setHardShowRules] = useState(false);
   const [showWinScore, setWinScore] = useState(false);
   const [Winnername, setWinnerName] = useState("");
   const [winnerscore, setWinningScore] = useState(0);
@@ -45,8 +55,12 @@ const App = () => {
   const [PlayerName2, setPlayerName2] = useState("Player Two");
   const [Start, setStart] = useState(false);
   const [HardMode, setHardMode] = useState(false);
+  const [ShowDice, setShowDice] = useState(false);
+  const [lastrollsix, setlastrollsix] = useState(false);
 
   const randomNum = Math.ceil(Math.random() * 6);
+  const randomNum2 = Math.ceil(Math.random() * 6);
+
   const totalPlayer1Score = Player1Score + P1CurrentScore;
   const totalPlayer2Score = Player2Score + P2CurrentScore;
   const totalp1CurrentScore = P1CurrentScore + randomNum;
@@ -66,56 +80,144 @@ const App = () => {
   };
 
   const rolldice = () => {
+    console.log(randomNum);
+    console.log(randomNum2);
     setRandomGenNum(randomNum);
-    if (randomNum !== 1) {
-      if (ActivePlayer === 1) {
-        setP1CurrentScore(totalp1CurrentScore);
+    setRandomGenNum2(randomNum2);
+    if (HardMode === true) {
+      if (randomNum === 6 || randomNum2 === 6) {
+        if (lastrollsix === true) {
+          if (ActivePlayer === 1) {
+            setPlayer1Score(totalPlayer1Score - 20);
+            setP1CurrentScore(0);
+            setActivePlayer(1 - ActivePlayer);
+            setlastrollsix(false);
+          } else {
+            setPlayer2Score(totalPlayer2Score - 20);
+            setP2CurrentScore(0);
+            setActivePlayer(1 - ActivePlayer);
+            setlastrollsix(false);
+          }
+        } else {
+          if (randomNum === 1 || randomNum2 === 1) {
+            if (ActivePlayer === 1) {
+              setP1CurrentScore(0);
+              setActivePlayer(1 - ActivePlayer);
+            } else {
+              setP2CurrentScore(0);
+              setActivePlayer(1 - ActivePlayer);
+            }
+          } else {
+            if (ActivePlayer === 1) {
+              setP1CurrentScore(totalp1CurrentScore + randomNum2);
+              setlastrollsix(true);
+            } else {
+              setP2CurrentScore(totalp2CurrentScore + randomNum2);
+              setlastrollsix(true);
+            }
+          }
+        }
       } else {
-        setP2CurrentScore(totalp2CurrentScore);
+        setlastrollsix(false);
+        if (randomNum === 1 || randomNum2 === 1) {
+          if (ActivePlayer === 1) {
+            setP1CurrentScore(0);
+            setActivePlayer(1 - ActivePlayer);
+          } else {
+            setP2CurrentScore(0);
+            setActivePlayer(1 - ActivePlayer);
+          }
+        } else {
+          if (ActivePlayer === 1) {
+            setP1CurrentScore(totalp1CurrentScore + randomNum2);
+          } else {
+            setP2CurrentScore(totalp2CurrentScore + randomNum2);
+          }
+        }
       }
     } else {
-      if (ActivePlayer === 1) {
-        setP1CurrentScore(0);
+      if (randomNum !== 1) {
+        if (ActivePlayer === 1) {
+          setP1CurrentScore(totalp1CurrentScore);
+        } else {
+          setP2CurrentScore(totalp2CurrentScore);
+        }
       } else {
-        setP2CurrentScore(0);
+        if (ActivePlayer === 1) {
+          setP1CurrentScore(0);
+        } else {
+          setP2CurrentScore(0);
+        }
+        setActivePlayer(1 - ActivePlayer);
       }
-      setActivePlayer(1-ActivePlayer);
     }
   };
   const holddice = () => {
-    if (ActivePlayer === 1) {
-      if (totalPlayer1Score >= Input) {
-        setPlayer1Score(totalPlayer1Score);
-        setP1CurrentScore(0);
-        winnerfunction("Player One", totalPlayer1Score);
+    if (HardMode === true) {
+      if (ActivePlayer === 1) {
+        if (totalPlayer1Score >= HardmodeInput) {
+          setPlayer1Score(totalPlayer1Score);
+          setP1CurrentScore(0);
+          winnerfunction("Player One", totalPlayer1Score);
+        } else {
+          setPlayer1Score(totalPlayer1Score);
+          setP1CurrentScore(0);
+          setActivePlayer(0);
+        }
       } else {
-        setPlayer1Score(totalPlayer1Score);
-        setP1CurrentScore(0);
-        setActivePlayer(0);
+        if (totalPlayer2Score >= HardmodeInput) {
+          setPlayer2Score(totalPlayer2Score);
+          setP2CurrentScore(0);
+          winnerfunction("Player Two", totalPlayer2Score);
+        } else {
+          setPlayer2Score(totalPlayer2Score);
+          setP2CurrentScore(0);
+          setActivePlayer(1);
+        }
       }
     } else {
-      if (totalPlayer2Score >= Input) {
-        setPlayer2Score(totalPlayer2Score);
-        setP2CurrentScore(0);
-        winnerfunction("Player Two", totalPlayer2Score);
+      if (ActivePlayer === 1) {
+        if (totalPlayer1Score >= Input) {
+          setPlayer1Score(totalPlayer1Score);
+          setP1CurrentScore(0);
+          winnerfunction("Player One", totalPlayer1Score);
+        } else {
+          setPlayer1Score(totalPlayer1Score);
+          setP1CurrentScore(0);
+          setActivePlayer(0);
+        }
       } else {
-        setPlayer2Score(totalPlayer2Score);
-        setP2CurrentScore(0);
-        setActivePlayer(1);
+        if (totalPlayer2Score >= Input) {
+          setPlayer2Score(totalPlayer2Score);
+          setP2CurrentScore(0);
+          winnerfunction("Player Two", totalPlayer2Score);
+        } else {
+          setPlayer2Score(totalPlayer2Score);
+          setP2CurrentScore(0);
+          setActivePlayer(1);
+        }
       }
     }
   };
   const normalclickmode = () => {
-    console.log("Normal mode Game");
+    setHardMode(false);
   };
   const Hardclickmode = () => {
-    setHardMode(!HardMode);
+    setHardMode(true);
+    setShowDice(true);
   };
   const InputScore = (e) => {
     setInput(e.target.value);
   };
+  const Hardmodeinput = (e) => {
+    setInput(e.target.value);
+  };
+
   const displayRules = () => {
     setShowRules(!showRules);
+  };
+  const displayHardRules = () => {
+    setHardShowRules(!showHardRules);
   };
   const editplayername = () => {
     seteditname(!showeditname);
@@ -131,10 +233,21 @@ const App = () => {
   const InputName2 = (e) => {
     setPlayerName2(e.target.value);
   };
+  const enternames = () => {
+    if (name1input == "player1" || name2input == "player2") {
+      setwarning("PLAYER NAMES REQUIRED");
+      return;
+    } else {
+      setwarning("");
+      seteditname(!showeditname);
+    }
+  };
+  let clsName = HardMode ? "hero bgcolor" : "hero";
+  // console.log(clsName);
 
   return (
     <>
-      <div className="hero">
+      <div className={clsName}>
         <div className="maincontainer">
           <div className={`Playerone ${ActivePlayer ? "active" : "inactive"}`}>
             <div className="TopButtons">
@@ -161,7 +274,10 @@ const App = () => {
               current="Current Score"
               currentscore={P1CurrentScore}
             />
-            <DiceImage randomNum={randomGeneNum} />
+            <div className="Dicecls">
+              <DiceImage randomNum={randomGeneNum} />
+              {HardMode && <DiceImage randomNum={randomGeneNum2} />}
+            </div>
             <div className="MiddleButtons">
               <Button
                 icon={<FaRedo />}
@@ -185,15 +301,36 @@ const App = () => {
           </div>
         </div>
         <div className="BottomButtons">
-          <Button icon={<FaSmile />} name="Normal Mode" />
-          <Button icon={<FaFire />} name="Hard Mode" />
-          <InputField icon={<FaBullseye />} input={InputScore} />
           <Button
-            icon={<FaBook />}
-            name="Rules"
-            Buttonfunction={displayRules}
+            icon={<FaSmile />}
+            Buttonfunction={normalclickmode}
+            name="Normal Mode"
           />
+          <Button
+            icon={<FaFire />}
+            Buttonfunction={Hardclickmode}
+            name="Hard Mode"
+          />
+          {!HardMode && <InputField icon={<FaBullseye />} input={InputScore} />}
+          {HardMode && (
+            <InputField icon={<FaBullseye />} input={Hardmodeinput} />
+          )}
+          {!HardMode && (
+            <Button
+              icon={<FaBook />}
+              name="Rules"
+              Buttonfunction={displayRules}
+            />
+          )}
+          {HardMode && (
+            <Button
+              icon={<FaBook />}
+              name="Rules"
+              Buttonfunction={displayHardRules}
+            />
+          )}
           {showRules && <RulesModal Okayfunc={displayRules} />}
+          {showHardRules && <HardRules getstarted={displayHardRules} />}
           <Button
             icon={<FaEdit />}
             name="Edit"
@@ -204,6 +341,8 @@ const App = () => {
               closeFunc={editplayername}
               value={InputName1}
               value2={InputName2}
+              entername={enternames}
+              warning={warning}
             />
           )}
           {showWinScore && (

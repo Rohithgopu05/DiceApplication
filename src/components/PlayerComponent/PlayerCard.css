@@ -24,18 +24,27 @@
 }
 .Playercard h1 {
   font-weight: 100;
-  color: rgb(0, 0, 0);
-  margin-top: 60px;
+  color: rgb(237, 230, 230);
+  /* margin-top: 60px; */
   font-size: 30px;
 }
 .Playercard h2 {
-  color: rgb(0, 0, 0);
+  color: antiquewhite;
 }
 .Playercard p {
+  color: antiquewhite;
   font-weight: 100;
-  color: rgb(0, 0, 0);
   margin-top: 10px;
   font-size: 30px;
+}
+.playertitle {
+  border: 1px solid black;
+  height: 100px;
+  width: 150px;
+  margin-top: 95px;
+  background-color: blue;
+  border-radius: 5px;
+  box-shadow: 8px 4px 4px 8px rgb(22, 20, 20);
 }
 .currentbox {
   margin-top: 150px;
@@ -44,5 +53,4 @@
   border: none;
   border-radius: 5px;
   box-shadow: 8px 4px 4px 8px rgb(22, 20, 20);
-
 }
